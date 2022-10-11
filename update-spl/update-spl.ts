@@ -17,7 +17,7 @@ const INITIALIZE = false;
 async function main(){
     console.log("let's name some tokens!");
     const myKeypair = loadWalletKey("DYnd8vfxvy5G8Beuw5y6tYhtiPGmFtV1NzMGnFrMJnnZ.json");
-    const mint = new web3.PublicKey("3eVCQsQFg27cA1Wo1BmiBuSZZ1vcEs8kdBvQgr7CLZM6");
+    const mint = new web3.PublicKey("5ACuBmwjgm7Hs4ogpW4iGsGpFjrt72VWUX9vQPgdUwVQ");
     const seed1 = Buffer.from(anchor.utils.bytes.utf8.encode("metadata"));
     const seed2 = Buffer.from(mpl.PROGRAM_ID.toBytes());
     const seed3 = Buffer.from(mint.toBytes());
