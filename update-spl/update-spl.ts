@@ -7,8 +7,7 @@ import * as anchor from '@project-serum/anchor';
 export function loadWalletKey(keypairFile:string): web3.Keypair {
     const fs = require("fs");
     const loaded = web3.Keypair.fromSecretKey(
-      new Uint8Array(JSON.parse(fs.readFileSync(keypairFile).toString())),
-    );
+      new Uint8Array(JSON.parse(fs.readFileSync(keypairFile).toString())));
     return loaded;
   }
 
@@ -16,8 +15,8 @@ const INITIALIZE = false;
 
 async function main(){
     console.log("let's name some tokens!");
-    const myKeypair = loadWalletKey("DYnd8vfxvy5G8Beuw5y6tYhtiPGmFtV1NzMGnFrMJnnZ.json");
-    const mint = new web3.PublicKey("5ACuBmwjgm7Hs4ogpW4iGsGpFjrt72VWUX9vQPgdUwVQ");
+    const myKeypair = loadWalletKey('DYnd8vfxvy5G8Beuw5y6tYhtiPGmFtV1NzMGnFrMJnnZ.json');
+    const mint = new web3.PublicKey('5ACuBmwjgm7Hs4ogpW4iGsGpFjrt72VWUX9vQPgdUwVQ');
     const seed1 = Buffer.from(anchor.utils.bytes.utf8.encode("metadata"));
     const seed2 = Buffer.from(mpl.PROGRAM_ID.toBytes());
     const seed3 = Buffer.from(mint.toBytes());
@@ -28,7 +27,8 @@ async function main(){
         mintAuthority: myKeypair.publicKey,
         payer: myKeypair.publicKey,
         updateAuthority: myKeypair.publicKey,
-    }
+    };
+
     const dataV2 = {
         name: "ChozenOne",
         symbol: "CZO",
@@ -38,9 +38,10 @@ async function main(){
         creators: null,
         collection: null,
         uses: null
-    }
+    };
+
     let ix;
-    if (INITIALIZE) {
+    if (!INITIALIZE) {
         const args =  {
             createMetadataAccountArgsV2: {
                 data: dataV2,
