@@ -33,7 +33,7 @@ async function main(){
     const dataV2 = {
         name: "ChozenOne",
         symbol: "CZO",
-        uri: "https://raw.githubusercontent.com/reyes233/spltoken/main/metadata/metadata.json",
+        uri: "https://raw.githubusercontent.com/reyes233/module3-assessment/main/spltoken/metadata/metadata.json",
         // we don't need that
         sellerFeeBasisPoints: 0,
         creators: null,
