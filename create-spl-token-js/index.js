@@ -1,5 +1,5 @@
 import { clusterApiUrl, Connection, Keypair, LAMPORTS_PER_SOL } from '@solana/web3.js';
-import { createMint, getOrCreateAssociatedTokenAccount, mintTo, transfer } from '@solana/spl-token';
+import { createMint, getOrCreateAssociatedTokenAccount, mintTo } from '@solana/spl-token';
 
 const FROM_SECRET_KEY = new Uint8Array(
     [
@@ -44,4 +44,5 @@ const FROM_SECRET_KEY = new Uint8Array(
         []
     );
     console.log('mint tx:', signature); 
+
 })();
