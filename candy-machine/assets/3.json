@@ -1,7 +1,7 @@
 {
-  "name": "Number #0004",
-  "symbol": "NB",
-  "description": "Collection of 10 numbers on the blockchain. This is the number 1/10.",
+  "name": "Crown CZOx004",
+  "symbol": "CZOC",
+  "description": "Collection of 10 crowns on the blockchain. This is the crown 4/10.",
   "seller_fee_basis_points": 500,
   "image": "3.png",
   "attributes": [
@@ -37,7 +37,7 @@
     ]
   },
   "collection": {
-    "name": "numbers",
-    "family": "numbers"
+    "name": "crowns",
+    "family": "crowns"
   }
 }
