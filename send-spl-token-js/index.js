@@ -1,5 +1,5 @@
 import { clusterApiUrl, Connection, Keypair, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
-import { createMint, getOrCreateAssociatedTokenAccount, mintTo, transfer } from '@solana/spl-token';
+import { getOrCreateAssociatedTokenAccount, mintTo, transfer } from '@solana/spl-token';
 
 const FROM_SECRET_KEY = new Uint8Array(
     [
@@ -36,23 +36,43 @@ const FROM_SECRET_KEY = new Uint8Array(
         fromWallet,
         mint,
         fromWallet.publicKey
-    )
+    );
 
-    for (let i = 0; i < toWalletArray.length; i++)
-    {
-        var toWallet = toWalletArray[i];
-        // Step 2: Airdrop SOL into your from wallet
-        const fromAirdropSignature = await connection.requestAirdrop(fromWallet.publicKey, LAMPORTS_PER_SOL);
-        // Wait for airdrop confirmation
-        await connection.confirmTransaction(fromAirdropSignature, { commitment: "confirmed" });
-        
-        console.log("Current TO Wallet {}", toWallet);
+    //add 100 supply to our new SPL token
+    /*
+    let signature = await mintTo(
+        connection,
+        fromWallet,
+        mint,
+        fromTokenAccount.address,
+        fromWallet.publicKey,
+        100000000000,
+        []
+    );
+    console.log('mint tx:', signature);
+    */
+
+    //airdrop SOL to FromWallet
+    /*
+    const fromAirdropSignature = await connection.requestAirdrop(fromWallet.publicKey, LAMPORTS_PER_SOL);
+    // Wait for airdrop confirmation
+    await connection.confirmTransaction(fromAirdropSignature, { commitment: "confirmed" });
+    */
+   
+    for (const wallet of toWalletArray)
+    {        
+        console.log("Transfer to current TO Wallet ", wallet);
         //Step 3: Get the token account of the to-wallet address and if it does not exist, create it
-        const toTokenAccount = await getOrCreateAssociatedTokenAccount(connection, fromWallet, mint, toWallet);
+        const toTokenAccount = await getOrCreateAssociatedTokenAccount(
+            connection, 
+            fromWallet, 
+            mint, 
+            new PublicKey(wallet)
+        );
 
         //Step 4: Transfer the new token to the to-wallet's token account that was just created
         // Transfer the new token to the "toTokenAccount" we just created
-        signature = await transfer(
+        let signature = await transfer(
             connection,
             fromWallet,
             fromTokenAccount.address,
