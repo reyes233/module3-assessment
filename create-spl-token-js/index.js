@@ -13,7 +13,7 @@ const FROM_SECRET_KEY = new Uint8Array(
 );
 
 (async () => {
-    // Step 1: Connect to cluster and generate a new Keypair
+    // Step 1: Connect to cluster
     const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
 
     const fromWallet = Keypair.fromSecretKey(FROM_SECRET_KEY);
@@ -40,7 +40,7 @@ const FROM_SECRET_KEY = new Uint8Array(
         mint,
         fromTokenAccount.address,
         fromWallet.publicKey,
-        1000000000,
+        100000000000,
         []
     );
     console.log('mint tx:', signature); 
